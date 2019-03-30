@@ -1,0 +1,28 @@
+package caht.model;
+
+public class Massage {
+		
+    private Massage sender;
+	private Massage receiver;
+//	private Massage center;
+	private Massage massageTap;
+	public Massage getSender() {
+		return sender;
+	}
+	public void setSender(Massage sender) {
+		this.sender = sender;
+	}
+	public Massage getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(Massage receiver) {
+		this.receiver = receiver;
+	}
+	public Massage getMassageTap() {
+		return massageTap;
+	}
+	public void setMassageTap(Massage massageTap) {
+		this.massageTap = massageTap;
+	}
+	
+}

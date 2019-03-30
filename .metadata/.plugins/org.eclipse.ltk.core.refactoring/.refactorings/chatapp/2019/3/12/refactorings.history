@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Massageserver.java&apos; to &apos;chatfwq/src/caht.model&apos;&#x0D;&#x0A;- Original project: &apos;chatapp&apos;&#x0D;&#x0A;- Destination element: &apos;chatfwq/src/caht.model&apos;&#x0D;&#x0A;- Original element: &apos;caht.model.Massageserver.java&apos;" description="Copy compilation unit" destination="=chatfwq/src&lt;caht.model" element1="/src&lt;caht.model{Massageserver.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1553165542592" units="1" version="1.0"/>
+</session>
