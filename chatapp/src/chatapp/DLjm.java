@@ -35,6 +35,7 @@ public class DLjm extends JFrame implements ActionListener,Massageserver{
 	JButton jb1,jb2,jb3;
 	JPanel jp4;
 //	构造方法
+	
 	public DLjm(){
 //		创建北部
 		jl1=new JLabel(new ImageIcon("images/tou.gif"));
@@ -106,6 +107,7 @@ public class DLjm extends JFrame implements ActionListener,Massageserver{
 			Massage massage=new Lianjie().loginValidate(user);//要把密码和账号传送到连接端的loginValidate
 			
 			if(massage.getMassageTap().equals(massage_success)){
+				System.out.println("用户"+userName+"已成功登录");
 				new FLjm(userName);
 				this.dispose();
 			}else{

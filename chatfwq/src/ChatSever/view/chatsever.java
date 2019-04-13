@@ -34,6 +34,8 @@ public class chatsever extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==jb1)
 			new Server();
+		if(e.getSource()==jb2)
+			this.dispose();
 	}
 
 }

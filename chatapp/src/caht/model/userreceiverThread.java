@@ -1,0 +1,36 @@
+package caht.model;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+
+import chat.contrl.Lianjie;
+import chatapp.Chatjm;
+import chatapp.DLjm;
+import chatapp.FLjm;
+
+public class userreceiverThread extends Thread{
+	
+	Socket s;
+	public userreceiverThread(Socket s){
+		this.s=s;
+	}
+		public void run(){
+		ObjectInputStream ois;
+		Massage massage;
+		Chatjm chatjm;
+		try {
+			while(true){
+			ois=new ObjectInputStream(s.getInputStream());//接收服务器转发过来的信息
+			massage=(Massage)ois.readObject();
+			System.out.println("已接收"+massage.getSender()+"发送给"+massage.getReceiver()+"的信息:"+massage.getCenter()+"\r\n");
+			chatjm=(Chatjm)FLjm.hashmap.get(massage.getSender());
+			
+			chatjm.appendJM(massage.getCenter());
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

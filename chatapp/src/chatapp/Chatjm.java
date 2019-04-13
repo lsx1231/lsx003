@@ -4,24 +4,27 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 import javax.swing.*;
 
 import caht.model.Massage;
+import caht.model.Massageserver;
 import chat.contrl.Lianjie;
 
 public class Chatjm extends JFrame implements ActionListener{
 	JPanel chatjp;
-	JButton fs;
 	JTextArea jm;
+	JButton fs;
+	
 	JTextField sr;
 	JScrollPane js;
 	String sender;
 	String receiver;
-	Massage massage;
-
+	
 	public Chatjm(String sender,String receiver/*定义发送者和接收者的两个参数*/){
 		this.sender=sender;
 		this.receiver=receiver;
@@ -30,9 +33,9 @@ public class Chatjm extends JFrame implements ActionListener{
 		fs=new JButton("发送");
 		fs.addActionListener(this);
 		jm=new JTextArea();
-		jm.setEditable(false);
+		jm.setEditable(false);//不可编辑
 		jm.setForeground(Color.red);
-		sr=new JTextField(15);
+		sr=new JTextField(100);
 		js=new JScrollPane(jm);
 		this.add(js,"Center");
 		chatjp.add(sr);
@@ -47,7 +50,11 @@ public class Chatjm extends JFrame implements ActionListener{
 	
 	
 	public static void main(String[] args) {
-//		Chatjm Chatjm=new Chatjm();
+		
+	}
+	
+	public void appendJM(String message){
+		jm.append(receiver+"对你说："+message+"\r\n");
 	}
 
 
@@ -57,21 +64,20 @@ public class Chatjm extends JFrame implements ActionListener{
 			String information=sr.getText();
 			jm.append(information+"\r\n");
 			ObjectOutputStream oos;
+			Massage massage;
+			Socket s;
+			s=(Socket)Lianjie.hm.get(sender);
+			massage=new Massage();
 			massage.setSender(this.sender);
 			massage.setReceiver(this.receiver);
+			massage.setMassageTap(Massageserver.massage_common);
 			massage.setCenter(information);
 			try {
-				oos=new ObjectOutputStream(Lianjie.s.getOutputStream());
+				oos=new ObjectOutputStream(s.getOutputStream());
 				oos.writeObject(massage);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-		}
-			
-		
+		}		
 	}
-
-
-	
-
 }

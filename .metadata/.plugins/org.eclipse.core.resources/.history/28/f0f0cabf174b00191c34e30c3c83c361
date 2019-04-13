@@ -1,7 +1,0 @@
-package Serverwod.view;
-
-import java.util.concurrent.ThreadFactory;
-
-public interface ServerThread extends Thread{
-
-}

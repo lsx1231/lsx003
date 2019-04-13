@@ -1,5 +1,0 @@
-package Serverwod.view;
-
-public interface ServerThread {
-
-}

@@ -2,8 +2,14 @@ package chatapp;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.HashMap;
 
 import javax.swing.*;
+
+import caht.model.Massage;
+import chat.contrl.Lianjie;
 
 public class FLjm extends JFrame implements ActionListener,MouseListener{//¥¥Ω®Ω”ø⁄
 	
@@ -49,6 +55,8 @@ public class FLjm extends JFrame implements ActionListener,MouseListener{//¥¥Ω®Ω
 	CardLayout cardlayout;
 //	¥¥Ω®∑Ω∑®
 	String userName;
+	
+	public static HashMap hashmap=new HashMap<String,Chatjm>();
 	public FLjm(String userName){
 		this.userName=userName;
 //		≥ı ºø®∆¨¥¥Ω®
@@ -170,16 +178,22 @@ public class FLjm extends JFrame implements ActionListener,MouseListener{//¥¥Ω®Ω
 		if(e.getSource()==myfriendjb) cardlayout.show(this.getContentPane(),"0");
 		if(e.getSource()==myfriendjb2) cardlayout.show(this.getContentPane(),"0");
 		if(e.getSource()==jb3) cardlayout.show(this.getContentPane(),"0");
-		     
-		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getClickCount()==2){
+			Chatjm chatjm;
 			JLabel jlb1=(JLabel)e.getSource();
 			String receiver=jlb1.getText();//Ã·»° Û±ÍΩ” ’µΩµƒŒƒ±æ
-			new Chatjm(this.userName/*∑¢ÀÕ’ﬂ*/,receiver/*Ω” ’’ﬂ*/);
+//			new Chatjm(this.userName/*∑¢ÀÕ’ﬂ*/,receiver/*Ω” ’’ﬂ*/)
+			chatjm=(Chatjm)hashmap.get(userName);
+			if(chatjm==null){
+				chatjm=(Chatjm)new Chatjm(this.userName,receiver);
+			    hashmap.put(receiver,chatjm);
+			}else{
+				chatjm.setVisible(true);
+			}
 		}
 	}
 

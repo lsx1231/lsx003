@@ -4,16 +4,21 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 import caht.model.Massage;
+import caht.model.Massageserver;
 import caht.model.User;
+import caht.model.userreceiverThread;
 
-public class Lianjie {
+public class Lianjie implements Massageserver{
 	
-	public static Socket s;
+	public  Socket s;
+	public static HashMap hm=new HashMap<String,Socket>();
 //	建立和服务器的连接
 	public Lianjie(){
 		try {
+			
 			s=new Socket("127.0.0.1",3456);//建立连接
 			
 		} catch (IOException e) {
@@ -33,6 +38,10 @@ public class Lianjie {
 //			获取服务器验证结果
 			ObjectInputStream ois=new ObjectInputStream(s.getInputStream());
 				massage=(Massage)ois.readObject();
+				if(massage.getMassageTap().equals(massage_success)){
+					hm.put(user.getUserName(),s);
+					new userreceiverThread(s).start();
+				}
 			}
 		    catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
