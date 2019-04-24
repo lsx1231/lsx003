@@ -1,0 +1,38 @@
+package yychat.com.chatview;
+
+import javax.swing.*;
+
+public class ChatInterface extends JFrame{
+	
+	JPanel jp1;
+	JButton jb1;
+	JTextPane jtp;
+	JTextField jtf;
+	JScrollPane jsc;
+	
+	
+	public ChatInterface(){
+		
+		jp1=new JPanel();
+		jb1=new JButton("·¢ËÍ");
+		jtp=new JTextPane();
+		jtf=new JTextField(20);
+		jsc=new JScrollPane(jtp);
+		jp1.add(jtf);jp1.add(jb1);
+		
+		this.add(jsc,JLabel.CENTER);
+		this.add(jp1,"South");
+		
+		this.setTitle("");
+		this.setSize(350,240);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		
+	}
+
+	public static void main(String[] args) {
+		new  ChatInterface();
+
+	}
+
+}

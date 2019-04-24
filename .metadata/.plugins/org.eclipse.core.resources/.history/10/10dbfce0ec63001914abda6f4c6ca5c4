@@ -1,0 +1,130 @@
+package yychat.com.chatview;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
+import javax.swing.*;
+
+public class FriendList extends JFrame implements ActionListener,MouseListener{
+	
+	JPanel jp1,jp2,jp3;
+	JButton jb1,jb2,jb3;
+	JScrollPane jsl;
+	public static final int number=51;
+	JLabel[] friendname=new JLabel[number];
+	
+	
+	JPanel jp4,jp5,jp6;
+	JButton jb4,jb5,jb6;
+	JScrollPane jsl1;
+	JLabel[] friendstranger=new JLabel[number];
+	
+	CardLayout cardlayout;
+	String userName;
+	public FriendList(String userName){
+		this.userName=userName;
+		
+		//第一张卡片
+		jp1=new JPanel(new BorderLayout());
+		jp2=new JPanel(new GridLayout(number-1,1));jp3=new JPanel(new GridLayout(2,1));
+		jb1=new JButton("我的好友");jb2=new JButton("我的陌生人");
+		jb2.addActionListener(this);
+		jb3=new JButton("我的黑名单");
+		for(int i=1;i<number;i++){
+			friendname[i]=new JLabel(i+"",new ImageIcon("Images/YY1.gif"),JLabel.LEFT);
+			friendname[i].addMouseListener(this);
+			jp2.add(friendname[i]);
+		}
+		jsl1=new JScrollPane(jp2);
+		jp1.add(jsl1);
+		
+		jp3.add(jb2);jp3.add(jb3);
+		jp1.add(jb1,"North");
+		jp1.add(jp3,"South");
+		
+		//第二张卡片
+		jp4=new JPanel(new BorderLayout());
+		jp5=new JPanel(new GridLayout(number-1,1));jp6=new JPanel(new GridLayout(2,1));
+		jb4=new JButton("我的好友");
+		jb4.addActionListener(this);
+		jb5=new JButton("我的陌生人");jb6=new JButton("我的黑名单");
+		for(int i=1;i<number;i++){
+			friendstranger[i]=new JLabel(i+"",new ImageIcon("Images/YY3.gif"),JLabel.LEFT);
+			jp5.add(friendstranger[i]);
+		}
+		jsl=new JScrollPane(jp5);
+		jp4.add(jsl);
+		
+		jp6.add(jb4);jp6.add(jb5);
+		jp4.add(jb6,"South");
+		jp4.add(jp6,"North");
+		
+        this.add(jp1);
+        this.add(jp4);
+		
+        cardlayout=new CardLayout();
+        
+        this.setLayout(cardlayout);
+        this.add(jp1,"1");
+        this.add(jp4,"2");
+		this.setSize(200,600);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle(userName+"的好友列表");
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		
+		
+	}
+
+	public static void main(String[] args) {
+		//FriendList FriendList= new FriendList();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==jb2) cardlayout.show(this.getContentPane(),"2");
+		if(e.getSource()==jb4) cardlayout.show(this.getContentPane(), "1");
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		JLabel jlabel=(JLabel)e.getSource();
+		jlabel.setForeground(Color.BLUE);
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		JLabel jlabel=(JLabel)e.getSource();
+		jlabel.setForeground(Color.BLACK);
+		
+	}
+
+
+}

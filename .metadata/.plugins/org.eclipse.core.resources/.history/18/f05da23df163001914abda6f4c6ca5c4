@@ -1,0 +1,6 @@
+package chat.model;
+
+public interface MessageTap {
+	
+
+}

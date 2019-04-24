@@ -1,0 +1,51 @@
+package yychat.connect;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+
+import chat.model.Message;
+import chat.model.User;
+
+public class ConnectPort {
+	public static Socket s;
+	public static HashMap hashmap=new HashMap<String,Socket>();
+	
+	public ConnectPort(){
+		
+	try {
+		
+		s=new Socket("127.0.0.1",3456);
+		System.out.println("¿Í·þ¶ËSocket"+s);
+		
+	} catch (UnknownHostException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	}
+	public  Message loginValidate(User user){
+		ObjectOutputStream oos;
+		ObjectInputStream ois;
+		Message mess=null;
+		try {
+			oos=new ObjectOutputStream(s.getOutputStream());
+			oos.writeObject(user);
+			
+			ois=new ObjectInputStream(s.getInputStream());
+		    mess=(Message)ois.readObject();
+		    
+		    if(mess.getMessageType().equals(Message.message_VerificationSuccess)){
+		    	hashmap.put(user.getUserName(),s);
+		    	new ClientReceiver(hashmap,s).start();
+		    }
+		    
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return mess;
+	}
+}

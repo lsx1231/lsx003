@@ -1,0 +1,51 @@
+package yychat.com.chatview;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.*;
+
+public class LoginInterface extends JFrame{
+	
+	
+	JPanel jp1;//整个面板的容器
+	//北部组件
+	JLabel jl1;
+	
+	//南部组件
+	JPanel jp2;
+	JButton jb1,jb2,jb3;
+	JLabel jl2,jl3,jl4;
+	
+	public LoginInterface(){
+		
+		//北部创建
+		jp1=new JPanel(new BorderLayout());
+		jl1=new JLabel(new ImageIcon("Images/tou.gif"));
+		jp1.add(jl1,"North");
+		
+		//南部创建
+		jp2=new JPanel(new GridLayout(1,3));
+		jb1=new JButton();jb2=new JButton();jb3=new JButton();
+		jl2=new JLabel(new ImageIcon("Images/denglu.gif"));jl3=new JLabel(new ImageIcon("Images/zhuce.gif"));jl4=new JLabel(new ImageIcon("Images/quxiao.gif"));
+		jb1.add(jl2);jb2.add(jl3);jb3.add(jl4);
+		jp2.add(jb1);jp2.add(jb2);jp2.add(jb3);
+		jp2.add(jp1,"South");
+		
+		
+		this.add(jp1);
+		
+		this.setSize(350,240);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("聊天室登录");
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		
+	}
+	
+	public static void main(String[] args) {
+		LoginInterface LoginInterface=new LoginInterface();
+
+	}
+
+}

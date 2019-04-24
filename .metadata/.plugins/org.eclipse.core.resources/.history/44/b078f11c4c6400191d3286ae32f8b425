@@ -1,0 +1,89 @@
+package ServerRunAssembly;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+import chat.model.Message;
+import chat.model.MessageType;
+
+public class ServerReceiverThread extends Thread{
+	
+	Socket s;
+	HashMap hashmap;
+	
+	public ServerReceiverThread(HashMap hashmap,Socket s){
+		this.s=s;
+		this.hashmap=hashmap;
+	}
+	public void run(){
+		ObjectInputStream ois;
+		try {
+			while(true){
+			ois=new ObjectInputStream(s.getInputStream());
+			Message mess=(Message)ois.readObject();
+			
+			if(mess.getMessageType().equals(Message.message_comment)){
+				Socket s1=(Socket)hashmap.get(mess.getReceiver());
+				ReceiverMain(s1,mess);
+			}
+			if(mess.getMessageType().equals(MessageType.message_rquestonlinefriendname)){
+				Socket s1=(Socket)hashmap.get(mess.getSender());
+				Set onlineFriendName=ServerRun.hashmap.keySet();
+				Iterator iterator=onlineFriendName.iterator();
+				String friendname;
+				String friendnamestring=" ";
+				while(iterator.hasNext()){
+					friendname=(String)iterator.next();
+					if(!friendname.equals(mess.getSender())){
+						friendnamestring=friendname+" "+friendnamestring;
+					}
+					mess.setContent(friendnamestring);
+					mess.setReceiver(mess.getSender());
+					System.out.println(mess.getReceiver());
+					mess.setSender("server");
+					mess.setMessageType(Message.message_onlinefriendname);
+					}
+				 ReceiverMain(s1,mess);
+			}
+				if(mess.getMessageType().equals(Message.message_finishedonlinefriendupdate)){
+					mess.setMessageType(Message.message_onlinefriendupdate);
+					Set onlineFriendkey=ServerRun.hashmap.keySet();
+					Iterator Iterator=onlineFriendkey.iterator();
+					String friendkey;
+					while(Iterator.hasNext()){
+						friendkey=(String)Iterator.next();
+						if(!friendkey.equals(mess.getSender())){
+							Socket s1=(Socket)ServerRun.hashmap.get(friendkey);
+//							ObjectOutputStream oos;
+//							oos=new ObjectOutputStream(s1.getOutputStream());
+							mess.setSender("server");
+							mess.setReceiver(friendkey);
+							mess.setMessageType(Message.message_onlinefriendupdate);
+//							oos.writeObject(mess);
+							ReceiverMain(s1,mess);
+						}
+						}
+					
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	private void ReceiverMain(Socket s1, Message mess) {
+		ObjectOutputStream oos;
+		try {
+			oos=new ObjectOutputStream(s1.getOutputStream());
+			oos.writeObject(mess);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+}

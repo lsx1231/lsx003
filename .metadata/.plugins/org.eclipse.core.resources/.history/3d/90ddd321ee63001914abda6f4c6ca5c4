@@ -1,0 +1,24 @@
+package ServerRunAssembly;
+
+import java.io.IOException;
+import java.net.*;
+
+public class ServerRun {
+	
+	ServerSocket ss;
+	Socket s;
+	
+	public ServerRun(){
+		
+		try {
+			ss=new ServerSocket(3456);
+			System.out.println("服务器已启动，正在监听3456端口......");
+			
+			s=ss.accept();
+			System.out.println(s);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

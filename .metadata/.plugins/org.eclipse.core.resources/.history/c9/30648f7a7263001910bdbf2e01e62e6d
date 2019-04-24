@@ -1,0 +1,27 @@
+package yychat.com.chatview;
+
+import javax.swing.*;
+
+public class LoginInterface extends JFrame{
+	
+	JPanel jp1,jp2;
+	JLabel jl1;
+	
+	public LoginInterface(){
+		
+		
+		
+		this.setSize(350,240);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("ÁÄÌìÊÒµÇÂ¼");
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		
+	}
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

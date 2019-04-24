@@ -1,0 +1,45 @@
+package ServerRunAssembly;
+
+import java.io.*;
+import java.net.*;
+
+import javax.jws.soap.SOAPBinding.Use;
+
+import chat.model.*;
+
+public class ServerRun {
+	
+	ServerSocket ss;
+	Socket s;
+	
+	public ServerRun() {
+		
+		try {
+			ss=new ServerSocket(3456);
+			System.out.println("服务器已启动，正在监听3456端口......");
+			
+			while(true){
+			s=ss.accept();
+			System.out.println(s);
+			
+			ObjectInputStream ois;
+			ois=new ObjectInputStream(s.getInputStream());
+			User user=(User)ois.readObject();
+			
+			Message mess=new Message();
+			ObjectOutputStream oos;
+			oos=new ObjectOutputStream(s.getOutputStream());
+			if(user.getPassWord().equals("123456"))
+			{
+				mess.setMessageType(MessageType.message_VerificationSuccess);
+				oos.writeObject(mess);
+			}else{
+				mess.setMessageType(MessageType.message_VerificationFail);
+				oos.writeObject(mess);
+			}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+}

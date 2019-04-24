@@ -1,0 +1,28 @@
+package yychat.connect;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import chat.model.User;
+
+public class ConnectPort {
+	Socket s;
+	public ConnectPort(){
+		
+	try {
+		
+		s=new Socket("127.0.0.1",3456);
+		System.out.println("¿Í·þ¶ËSocket"+s);
+		
+	} catch (UnknownHostException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	}
+	public void loginValidate(User user){
+		ObjectOutputStream oos;
+	}
+}

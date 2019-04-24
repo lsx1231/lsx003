@@ -1,0 +1,37 @@
+package chat.model;
+
+import java.io.Serializable;
+
+public class Message implements MessageType,Serializable{
+	private String Sender;
+	private String Receiver;
+	private String content;
+	private String MessageType;
+	
+	public String getSender() {
+		return Sender;
+	}
+	public void setSender(String sender) {
+		Sender = sender;
+	}
+	public String getReceiver() {
+		return Receiver;
+	}
+	public void setReceiver(String receiver) {
+		Receiver = receiver;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getMessageType() {
+		return MessageType;
+	}
+	public void setMessageType(String messageType) {
+		MessageType = messageType;
+	}
+		
+
+}
