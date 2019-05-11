@@ -1,6 +1,0 @@
-package ServerRunAssembly;
-
-public class ServerReceiverThread extends Thread{
-	
-	
-}

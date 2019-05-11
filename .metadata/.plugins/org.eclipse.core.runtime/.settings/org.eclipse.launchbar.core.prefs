@@ -1,8 +1,6 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.launchbar.core.descriptorType.default\:FriendList,org.eclipse.launchbar.core.descriptorType.default\:FriendList (1),org.eclipse.launchbar.core.descriptorType.default\:ChatInterface,org.eclipse.launchbar.core.descriptorType.default\:Chatserver,org.eclipse.launchbar.core.descriptorType.default\:ClientLogin,org.eclipse.launchbar.core.descriptorType.default\:ServerStart,org.eclipse.launchbar.core.descriptorType.default\:LoginInterface,org.eclipse.launchbar.core.descriptorType.default\:ClientLogin (1),org.eclipse.launchbar.core.descriptorType.default\:Question1
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:ChatServer,org.eclipse.launchbar.core.descriptorType.default\:ClientConnetion,org.eclipse.launchbar.core.descriptorType.default\:ClientLogin,org.eclipse.launchbar.core.descriptorType.default\:FriendChat,org.eclipse.launchbar.core.descriptorType.default\:FriendList,org.eclipse.launchbar.core.descriptorType.default\:StartServer
 eclipse.preferences.version=1
-org.eclipse.launchbar.core.descriptorType.default\:ChatInterface/activeLaunchMode=run
-org.eclipse.launchbar.core.descriptorType.default\:ChatInterface/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
-org.eclipse.launchbar.core.descriptorType.default\:LoginInterface/activeLaunchMode=run
-org.eclipse.launchbar.core.descriptorType.default\:LoginInterface/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:ChatServer/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:ChatServer/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

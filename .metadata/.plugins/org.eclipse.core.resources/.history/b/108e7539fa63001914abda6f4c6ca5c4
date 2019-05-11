@@ -1,6 +1,0 @@
-package chat.model;
-
-public interface MessageType {
-	String message_VerificationFail="0";
-	String message_VerificationSuccess="1";
-}
